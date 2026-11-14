@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Juegos</title>
+</head>
+<body>
+    <h1>Juegos Disponibles</h1>
+
+    {% for juego in juegos %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; width: 300px;">
+            {% if juego.imagen %}
+                <img src="{{ juego.imagen.url }}" alt="{{ juego.nombre }}" style="width: 100%; height: auto;">
+            {% else %}
+                <p>Sin imagen</p>
+            {% endif %}
+            
+            <h3>{{ juego.nombre }}</h3>
+            <p>Categoría: {{ juego.categoria.nombre }}</p>
+            <p>Precio: ${{ juego.precio }}</p>
+        </div>
+    {% empty %}
+        <p>Aún no hay juegos registrados.</p>
+    {% endfor %}
+</body>
+</html>

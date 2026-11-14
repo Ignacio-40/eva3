@@ -18,7 +18,7 @@ class Juego(models.Model):
     def __str__(self):
         return self.nombre
 class Pedido(models.Model):
-    juego = models.ForeignKey(Juego, on_delete=models.CASCADE, related_name="juegos")
+    juego = models.ForeignKey(Juego, on_delete=models.CASCADE, related_name="pedidos")
     nombre_cliente = models.CharField(max_length=100)
     correo = models.EmailField()
     telefono = models.CharField(max_length=20)
