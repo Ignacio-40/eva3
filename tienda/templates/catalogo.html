@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo de Juegos Disponibles{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Catálogo de Juegos Disponibles</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for juego in juegos %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if juego.imagen %}
+                    <img src="{{ juego.imagen.url }}" class="card-img-top" alt="{{ juego.nombre }}" style="height: 250px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 250px;">
+                        Sin imagen
+                    </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <span class="badge bg-primary mb-2">{{ juego.categoria.nombre }}</span>
+                    <h5 class="card-title">{{ juego.nombre }}</h5>
+                    <ul class="list-unstyled text-muted small mb-3">
+                        <li> Jugadores: Hasta {{ juego.jugadores }}</li>
+                        <li> Edad mínima: +{{ juego.edadmin }} años</li>
+                        <li> Stock disponible: {{ juego.stock }} unidades</li>
+                    </ul>
+                    <h4 class="text-success fw-bold">${{ juego.precio|floatformat:0 }}</h4>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">No hay juegos disponibles en este momento.</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

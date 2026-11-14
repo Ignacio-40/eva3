@@ -2,12 +2,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-# Reemplaza 'tu_app' por el nombre real de la carpeta de tu aplicación
-from tienda.views import lista_juegos
+from tienda.views import catalogo  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lista_juegos, name='inicio'),  # <--- Ruta principal
+    path('', catalogo, name='catalogo'),
 ]
 
 if settings.DEBUG:
